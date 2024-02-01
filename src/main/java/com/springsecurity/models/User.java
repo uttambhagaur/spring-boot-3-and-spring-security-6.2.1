@@ -21,6 +21,7 @@ public class User implements UserDetails {
     private String password;
 
     @OneToOne
+    @JoinColumn(name = "role_id")
     private Role role;
 
     private Boolean enable;
@@ -117,7 +118,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return this.enable;
+        return this.enable == null?false:true;
     }
 
     public void setPassword(String password) {
