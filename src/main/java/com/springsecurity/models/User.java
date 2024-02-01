@@ -134,4 +134,65 @@ public class User implements UserDetails {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    public static UserBuilder withEmail(String email) {
+        return builder().email(email);
+    }
+
+    public static UserBuilder builder() {
+        return new UserBuilder();
+    }
+
+    // UserBuilder inner class
+    public static class UserBuilder {
+        private Integer id;
+        private String firstname;
+        private String lastname;
+        private String email;
+        private String password;
+        private Role role;
+
+        private UserBuilder() {}
+
+        public UserBuilder id(Integer id) {
+            this.id = id;
+            return this;
+        }
+
+        public UserBuilder firstname(String firstname) {
+            this.firstname = firstname;
+            return this;
+        }
+
+        public UserBuilder lastname(String lastname) {
+            this.lastname = lastname;
+            return this;
+        }
+
+        public UserBuilder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public UserBuilder password(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public UserBuilder role(Role role) {
+            this.role = role;
+            return this;
+        }
+
+        public User build() {
+            User user = new User();
+            user.id = this.id;
+            user.firstname = this.firstname;
+            user.lastname = this.lastname;
+            user.email = this.email;
+            user.password = this.password;
+            user.role = this.role;
+            return user;
+        }
+    }
 }
